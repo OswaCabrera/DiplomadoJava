@@ -1,0 +1,5 @@
+dgtic\core\servicio\ConfiguracionServicio.class
+dgtic\core\inicio\Inicio.class
+dgtic\core\modelo\Estudiante.class
+dgtic\core\modelo\Materia.class
+dgtic\core\servicio\ConfiguracionServicioDos.class
