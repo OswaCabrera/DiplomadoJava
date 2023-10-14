@@ -27,4 +27,14 @@ public class ConfiguracionServicio {
         pilas.setRecargables(true);
         return pilas;
     }
+
+    @Bean(initMethod = "abrirArchivo", destroyMethod = "cerrarArchivo")
+    public Registro registrar (){
+        String direc = System.getProperty("java.io.tmpdir") + "/compras";
+        System.out.println("El directorio es: " + direc);
+        Registro registro = new Registro();
+        registro.setNombreArchivo("compras_oct");
+        registro.setDireccion(direc);
+        return registro;
+    }
 }
