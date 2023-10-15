@@ -3,11 +3,33 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- bean definitions here -->
-    <bean id="empleado" class="dgtic.core.modelo.Empleado"
-        autowire="constructor">
-        <property name="nombre" value="Tomas"/>
-        <property name="edad" value="25"/>
+    <bean id="persona" class="dgtic.core.modelo.Persona"
+        scope="prototype">
+        <property name="nombre" value="Rebeca"/>
+        <property name="coche" ref ="servicio"/>
     </bean>
-    <bean id="actividad" class="dgtic.core.modelo.GestionProyectos"/>
-<!--    <bean id="actividadNueva" class="dgtic.core.modelo.GestionProyectos"/>-->
+
+    <bean id="escena" class="dgtic.core.modelo.Escena"
+          scope="prototype">
+        <property name="nombre" value="Pantano"/>
+        <property name="nivel" value ="1"/>
+        <property name="enemigos" ref ="servicio"/>
+        <property name="vida" ref ="vida"/>
+    </bean>
+
+    <bean id="escena2" class="dgtic.core.modelo.Escena"
+          scope="prototype">
+        <property name="nombre" value="Mar"/>
+        <property name="nivel" value ="2"/>
+        <property name="enemigos" ref ="servicio"/>
+        <property name="vida" ref ="vida"/>
+    </bean>
+
+    <bean id="vida" class="dgtic.core.modelo.Vida"
+          scope="singleton">
+        <property name="nombreJugador" value="Oswaldo"/>
+        <property name="numeroVida" value="3"/>
+        <property name="continues" value="1"/>
+    </bean>
+
 </beans>

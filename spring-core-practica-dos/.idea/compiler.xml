@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-core-autowire" />
+        <module name="spring-core-practica-dos" />
         <module name="prueba-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="spring-core-applicationcontext" target="17" />
+      <module name="spring-core-autowire" target="17" />
       <module name="spring-core-beanfactory" target="17" />
       <module name="spring-core-beans" target="17" />
       <module name="spring-core-collection" target="17" />
+      <module name="spring-core-factory" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -25,6 +27,8 @@
       <module name="spring-core-beanfactory" options="-parameters" />
       <module name="spring-core-beans" options="-parameters" />
       <module name="spring-core-collection" options="-parameters" />
+      <module name="spring-core-factory" options="-parameters" />
+      <module name="spring-core-practica-dos" options="-parameters" />
     </option>
   </component>
 </project>
