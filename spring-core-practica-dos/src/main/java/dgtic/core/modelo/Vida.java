@@ -5,7 +5,17 @@ public class Vida {
     private Integer numeroVida;
     private Integer continues;
 
+    private Escena escena;
+
     public Vida() {
+    }
+
+    public Escena getEscena() {
+        return escena;
+    }
+
+    public void setEscena(Escena escena) {
+        this.escena = escena;
     }
 
     public String getNombreJugador() {

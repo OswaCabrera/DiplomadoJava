@@ -24,6 +24,7 @@
         <property name="nombreJugador" value="Oswaldo"/>
         <property name="numeroVida" value="3"/>
         <property name="continues" value="1"/>
+        <property name="escena" ref="escena"/>
     </bean>
 
 </beans>
