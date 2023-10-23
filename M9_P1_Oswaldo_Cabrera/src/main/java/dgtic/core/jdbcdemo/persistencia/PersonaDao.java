@@ -10,5 +10,5 @@ public interface PersonaDao {
     public void insertar(Persona persona);
     public void cambiar(Persona persona);
     public void borrar(Persona persona);
-    public Integer callSpedad(Integer edad);
+    public Integer callSpEdad(Integer edad);
 }
