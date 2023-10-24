@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AutorRepositorio {
     public List<Autor> findAll();
-    public void findById(String correo);
+    public Autor findById(String correo);
 }

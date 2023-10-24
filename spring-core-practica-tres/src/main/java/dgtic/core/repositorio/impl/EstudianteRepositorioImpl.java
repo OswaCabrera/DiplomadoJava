@@ -7,7 +7,8 @@ import dgtic.core.repositorio.intf.EstudianteRepositorio;
 import java.util.List;
 import java.util.Optional;
 
-public class EstudianteRepositorioImpl implements EstudianteRepositorio {
+public class EstudianteRepositorioImpl {
+    /*
     @Override
     public List<Estudiante> findAll() {
         return BaseDeDatos.estudiantes;
@@ -29,4 +30,6 @@ public class EstudianteRepositorioImpl implements EstudianteRepositorio {
     public void save(Estudiante estudiante) {
 
     }
+
+     */
 }

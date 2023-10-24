@@ -4,6 +4,9 @@ public class Libro {
     private String isbn;
     private String nombre;
 
+    public Libro() {
+    }
+
     public Libro(String isbn, String nombre) {
         this.isbn = isbn;
         this.nombre = nombre;

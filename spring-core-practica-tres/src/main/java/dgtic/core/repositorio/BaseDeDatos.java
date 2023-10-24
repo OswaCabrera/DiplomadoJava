@@ -1,27 +1,39 @@
 package dgtic.core.repositorio;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import dgtic.core.modelo.Autor;
 import dgtic.core.modelo.Estudiante;
+import dgtic.core.modelo.Libro;
 import dgtic.core.modelo.Materia;
 public class BaseDeDatos {
-	public static List<Estudiante> estudiantes=new ArrayList<>();	
+	public static List<Estudiante> estudiantes =new ArrayList<>();
+	public static List<Autor> autores =new ArrayList<>();
+	public static List<Libro> libros =new ArrayList<>();
 	static {
-		Estudiante est=new Estudiante("123","Rosa",20);		
-		est.setMaterias(new Materia(1l,"Cálculo",9),new Materia(2l,"Programación",10),
-				new Materia(3l,"Lógica",10));
-		estudiantes.add(est);
-		est=new Estudiante("124","Tomas",22);		
-		est.setMaterias(new Materia(2l,"Programación",10),
-				new Materia(3l,"Lógica",10));
-		estudiantes.add(est);		
-		est=new Estudiante("125","Mario",20);		
-		est.setMaterias(new Materia(1l,"Cálculo",9),new Materia(4l,"Circuitos Lógicos",10),
-				new Materia(5l,"Lógica de Autómatas",10));
-		estudiantes.add(est);
-		est=new Estudiante("126","Esmeralda",22);		
-		est.setMaterias(new Materia(4l,"Circuitos Lógicos",10),
-				new Materia(5l,"Lógica de Autómatas",10));
-		estudiantes.add(est);
-				
+		Libro libro=new Libro("10", "Cálculo");
+		libros.add(libro);
+		Libro libro2 = new Libro("12","Probabilidad");
+		libros.add(libro2);
+		Autor autor = new Autor("James Stewart", "hola123@gmail.com");
+		autor.addLibro(libro);
+		autor.addLibro(libro2);
+		autores.add(autor);
+		Libro libro3=new Libro("11", "Física");
+		libros.add(libro3);
+		Libro libro4 = new Libro("13","Historia");
+		libros.add(libro4);
+		Autor autor2 = new Autor("Oswaldo", "hola@hmail.com");
+		autor2.addLibro(libro3);
+		autor2.addLibro(libro4);
+		autores.add(autor2);
+		Libro libro5=new Libro("14", "Química");
+		libros.add(libro5);
+		Libro libro6 = new Libro("15","Biología");
+		libros.add(libro6);
+		Autor autor3 = new Autor("Juan", "ha12@gmail.com");
+		autor3.addLibro(libro5);
+		autores.add(autor3);
 	}
 }
