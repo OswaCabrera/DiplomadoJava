@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- bean definitions here -->
+   <bean id="usuario" class="dgtic.core.modelo.Usuario"
+          autowire="constructor">
+          <property name="cuenta" ref="cuenta"/>
+    </bean>
+    <bean id="cuenta" class="dgtic.core.modelo.Cuenta"
+          autowire="constructor">
+        <property name="saldo" value="0"/>
+    </bean>
+    <bean id="transaccion" class="dgtic.core.modelo.Transaccion">
+        <property name="monto" value="0"/>
+    </bean>
+    <bean id="cuentaNueva" class="dgtic.core.modelo.EstatusCuenta"
+         scope="singleton">
+        <property name="nombre" value="Nueva"/>
+        <property name="descripcion" value="Cuenta de reciente creacion"/>
+    </bean>
+
+    <bean id="cuentaDeshabilitada" class="dgtic.core.modelo.EstatusCuenta"
+        scope="singleton">
+        <property name="nombre" value="Deshabilitada"/>
+        <property name="descripcion" value="Cuenta de deshabilitada"/>
+    </bean>
+</beans>
