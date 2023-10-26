@@ -1,14 +1,11 @@
 package dgtic.core.repositorio;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import dgtic.core.modelo.Autor;
-import dgtic.core.modelo.Estudiante;
 import dgtic.core.modelo.Libro;
-import dgtic.core.modelo.Materia;
+
 public class BaseDeDatos {
-	public static List<Estudiante> estudiantes =new ArrayList<>();
 	public static List<Autor> autores =new ArrayList<>();
 	public static List<Libro> libros =new ArrayList<>();
 	static {
@@ -16,7 +13,7 @@ public class BaseDeDatos {
 		libros.add(libro);
 		Libro libro2 = new Libro("12","Probabilidad");
 		libros.add(libro2);
-		Autor autor = new Autor("James Stewart", "hola123@gmail.com");
+		Autor autor = new Autor("Julio Cortez", "hola123@gmail.com");
 		autor.addLibro(libro);
 		autor.addLibro(libro2);
 		autores.add(autor);

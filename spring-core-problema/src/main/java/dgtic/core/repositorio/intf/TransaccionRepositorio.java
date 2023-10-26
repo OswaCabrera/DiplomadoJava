@@ -1,4 +1,9 @@
 package dgtic.core.repositorio.intf;
 
-public interface CuentaRepositorio {
+import dgtic.core.modelo.Transaccion;
+
+import java.util.List;
+
+public interface TransaccionRepositorio {
+    public List<Transaccion> findAll();
 }

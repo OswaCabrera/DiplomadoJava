@@ -1,4 +1,12 @@
 package dgtic.core.repositorio.intf;
 
-public interface CuentaRepositorio {
+import dgtic.core.modelo.Cuenta;
+import dgtic.core.modelo.EstatusCuenta;
+
+import java.util.List;
+
+public interface EstatusCuentaRepositorio {
+    public List<EstatusCuenta> findAll();
+
+    public EstatusCuenta findByNombre(String nombre);
 }

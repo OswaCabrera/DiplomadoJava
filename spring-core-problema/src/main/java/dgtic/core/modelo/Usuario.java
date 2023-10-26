@@ -1,5 +1,7 @@
 package dgtic.core.modelo;
 
+import java.util.Objects;
+
 public class Usuario {
     private String nombre;
     private String apellidoPaterno;
@@ -91,5 +93,17 @@ public class Usuario {
                 ", direccion='" + direccion + '\'' +
                 ", cuenta=" + cuenta +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Usuario usuario)) return false;
+        return Objects.equals(getNombre(), usuario.getNombre()) && Objects.equals(getApellidoPaterno(), usuario.getApellidoPaterno()) && Objects.equals(getApellidoMaterno(), usuario.getApellidoMaterno()) && Objects.equals(getPassword(), usuario.getPassword()) && Objects.equals(getEmail(), usuario.getEmail()) && Objects.equals(getTelefono(), usuario.getTelefono()) && Objects.equals(getDireccion(), usuario.getDireccion()) && Objects.equals(getCuenta(), usuario.getCuenta());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombre(), getApellidoPaterno(), getApellidoMaterno(), getPassword(), getEmail(), getTelefono(), getDireccion(), getCuenta());
     }
 }

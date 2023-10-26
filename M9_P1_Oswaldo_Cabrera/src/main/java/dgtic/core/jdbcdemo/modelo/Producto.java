@@ -4,16 +4,15 @@ public class Producto {
     private int id;
     private String descripcion;
     private int precio;
-    private int stiock;
+    private int stock;
 
     public Producto() {
     }
 
-    public Producto(int id, String descripcion, int precio, int stiock) {
-        this.id = id;
+    public Producto(String descripcion, int precio, int stock) {
         this.descripcion = descripcion;
         this.precio = precio;
-        this.stiock = stiock;
+        this.stock = stock;
     }
 
     public int getId() {
@@ -40,12 +39,12 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getStiock() {
-        return stiock;
+    public int getStock() {
+        return stock;
     }
 
-    public void setStiock(int stiock) {
-        this.stiock = stiock;
+    public void setStock(int stiock) {
+        this.stock = stiock;
     }
 
     @Override
@@ -54,7 +53,7 @@ public class Producto {
                 "id=" + id +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
-                ", stiock=" + stiock +
+                ", stock=" + stock +
                 '}';
     }
 }

@@ -6,16 +6,16 @@ import dgtic.core.repositorio.intf.AutorRepositorio;
 import dgtic.core.repositorio.intf.LibroRepositorio;
 
 import java.util.List;
+import java.util.Optional;
 
 public class AutorServicioImpl implements AutorServicio {
 
     private AutorRepositorio autorRepositorio;
     private LibroRepositorio libroRepositorio;
 
-    public AutorServicioImpl(AutorRepositorio autorRepositorio, LibroRepositorio libroRepositorio) {
+    public AutorServicioImpl(AutorRepositorio autorRepositorio) {
         super();
         this.autorRepositorio = autorRepositorio;
-        this.libroRepositorio = libroRepositorio;
     }
 
     @Override
@@ -25,6 +25,13 @@ public class AutorServicioImpl implements AutorServicio {
 
     @Override
     public Autor findById(String id) {
-        return autorRepositorio.findById(id);
+        Optional<Autor> autorOptional = autorRepositorio.findAll().stream()
+                .filter(a -> a.getCorreo().contains(id))
+                .findFirst();
+        Autor autor = null;
+        if (autorOptional.isPresent()) {
+            autor = autorOptional.orElseThrow();
+        }
+        return autor;
     }
 }

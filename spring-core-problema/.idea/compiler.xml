@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-core-practicaUno" />
+        <module name="spring-core-problema" />
         <module name="prueba-core" />
       </profile>
     </annotationProcessing>
@@ -16,6 +16,7 @@
       <module name="spring-core-beanfactory" target="17" />
       <module name="spring-core-beans" target="17" />
       <module name="spring-core-collection" target="17" />
+      <module name="spring-core-practicaUno" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -27,6 +28,7 @@
       <module name="spring-core-beans" options="-parameters" />
       <module name="spring-core-collection" options="-parameters" />
       <module name="spring-core-practicaUno" options="-parameters" />
+      <module name="spring-core-problema" options="-parameters" />
     </option>
   </component>
 </project>
