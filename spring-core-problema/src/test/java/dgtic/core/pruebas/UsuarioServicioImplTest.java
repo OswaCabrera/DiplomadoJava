@@ -2,8 +2,11 @@ package dgtic.core.pruebas;
 
 import dgtic.core.repositorio.BaseDeDatos;
 import dgtic.core.repositorio.intf.UsuarioRepositorio;
+import dgtic.core.servicio.UsuarioServicioImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,12 +17,12 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = {UsuarioServicioImplTest.class})
 @ComponentScan(basePackages = "dgtic.core")
 public class UsuarioServicioImplTest {
+
+    @Mock
     private UsuarioRepositorio usuarioRepositorio;
 
-    @BeforeEach
-    public void inicio() {
-        usuarioRepositorio=mock(UsuarioRepositorio.class);
-    }
+    @InjectMocks
+    private UsuarioServicioImpl usuarioServicio;
 
     @Test
     void testUno() {

@@ -4,7 +4,15 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Transaccion {
+    private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     private Integer monto;
     private Date fecha;

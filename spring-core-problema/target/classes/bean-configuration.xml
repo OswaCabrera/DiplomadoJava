@@ -5,16 +5,16 @@
     <!-- bean definitions here -->
 
    <bean id="usuario" class="dgtic.core.modelo.Usuario"
-          autowire="constructor">
+          autowire="constructor" scope="prototype">
           <property name="cuenta" ref="cuenta"/>
    </bean>
 
    <bean id="cuenta" class="dgtic.core.modelo.Cuenta"
-        autowire="constructor">
+        autowire="constructor" scope="prototype">
         <property name="saldo" value="0"/>
    </bean>
 
-   <bean id="transaccion" class="dgtic.core.modelo.Transaccion">
+   <bean id="transaccion" class="dgtic.core.modelo.Transaccion" scope="prototype">
         <property name="monto" value="0"/>
    </bean>
 

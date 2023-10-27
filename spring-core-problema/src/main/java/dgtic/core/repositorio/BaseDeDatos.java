@@ -26,7 +26,7 @@ public class BaseDeDatos {
         usuario.setApellidoMaterno("Pérez");
         usuario.setEmail("oswaldo@gmail.com");
         usuario.setPassword("123456");
-        usuario.setTelefono("1234567890");
+        usuario.setTelefono("12345678910");
         usuario.setDireccion("Calle 1");
         usuario.getCuenta().setSaldo(500);
 
@@ -48,14 +48,20 @@ public class BaseDeDatos {
         estatusCuenta.add(usuario2.getCuenta().getEstatusCuenta());
 
         Transaccion transaccion = (Transaccion)context.getBean("transaccion");
+        transaccion.setId("1");
         transaccion.setMonto(1000);
         transaccion.setCuenta(usuario.getCuenta());
         transacciones.add(transaccion);
 
         Transaccion transaccion2 = (Transaccion)context.getBean("transaccion");
-        transaccion2.setMonto(200);
+        transaccion2.setId("2");
+        transaccion2.setMonto(500);
         transaccion2.setCuenta(usuario2.getCuenta());
         transacciones.add(transaccion2);
+
+        EstatusCuenta estatusCuenta2 = (EstatusCuenta)context.getBean("cuentaDeshabilitada");
+        estatusCuenta.add(estatusCuenta2);
+
 
         ((ClassPathXmlApplicationContext) context).close();
     }
