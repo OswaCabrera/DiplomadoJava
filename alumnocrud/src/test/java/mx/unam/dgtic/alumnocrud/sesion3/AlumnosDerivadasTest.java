@@ -1,6 +1,7 @@
 package mx.unam.dgtic.alumnocrud.sesion3;
 
 import mx.unam.dgtic.alumnocrud.AlumnoRepository;
+import mx.unam.dgtic.alumnocrud.repository.ALumnoRepository;
 import mx.unam.dgtic.alumnocrud.infoTester;
 import mx.unam.dgtic.alumnocrud.model.Alumno;
 import org.junit.jupiter.api.Test;

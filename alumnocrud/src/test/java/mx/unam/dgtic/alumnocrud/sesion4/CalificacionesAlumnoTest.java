@@ -8,7 +8,7 @@ import org.springframework.test.context.jdbc.Sql;
 @SpringBootTest
 public class CalificacionesAlumnoTest {
     @Test
-    @Sql({"/schema_al_cal.sql","/data.sql"})
+    @Sql({"/schema_al_cal.sql","/data_al_cal.sql"})
     void loadCalsAlumnos(){
         System.out.println(infoTester.NOMBRE);
     }

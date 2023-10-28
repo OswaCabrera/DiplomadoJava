@@ -39,7 +39,7 @@ public class AlumnoConsultasTest {
     @Test
     void insertaUnoTest(){
         System.out.println("Insertando a un alumno");
-        Alumno alumno = new Alumno("1E", "Juan", "Perez", Date.valueOf("1956-01-01"), 1.70);
+        Alumno alumno = new Alumno("1E", "Juan", "Perez", Date.valueOf("1956-01-01"), 1.70, new ArrayList<>());
         Alumno resultado = alumnoRepository.save(alumno);
         System.out.println(resultado);
     }
@@ -89,7 +89,7 @@ public class AlumnoConsultasTest {
         System.out.println(infoTester.NOMBRE);
         ArrayList<Alumno> lista = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            lista.add(new Alumno(i + "F", "Nombre" + i, "Paterno" + i, Date.valueOf("1956-01-01"), 1.70));
+            lista.add(new Alumno(i + "F", "Nombre" + i, "Paterno" + i, Date.valueOf("1956-01-01"), 1.70, new ArrayList<>()));
         }
         System.out.println("Registros antes de guardar " + alumnoRepository.count());
         alumnoRepository.saveAll(lista);

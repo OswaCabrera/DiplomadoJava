@@ -1,13 +1,12 @@
 package mx.unam.dgtic.alumnocrud.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +24,7 @@ public class Alumno {
     private String paterno;
     private Date fnac;
     private double estatura;
+
+    @OneToMany(fetch=FetchType.EAGER ,mappedBy = "alumno")
+    private List<Calificacion> calificaciones = new ArrayList<>();
 }
