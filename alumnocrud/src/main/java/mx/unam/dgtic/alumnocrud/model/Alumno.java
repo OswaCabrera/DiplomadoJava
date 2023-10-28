@@ -1,6 +1,7 @@
 package mx.unam.dgtic.alumnocrud.model;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,6 +19,7 @@ import java.util.Date;
 public class Alumno {
     @Id
     private String matricula;
+    @Column(name = "nombre")
     private String nombreAlumno;
 
     private String paterno;
