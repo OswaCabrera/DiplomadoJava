@@ -1,7 +1,6 @@
 package mx.unam.dgtic.alumnocrud.sesion3;
 
-import mx.unam.dgtic.alumnocrud.AlumnoRepository;
-import mx.unam.dgtic.alumnocrud.repository.ALumnoRepository;
+import mx.unam.dgtic.alumnocrud.repository.AlumnoRepository;
 import mx.unam.dgtic.alumnocrud.infoTester;
 import mx.unam.dgtic.alumnocrud.model.Alumno;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @SpringBootTest
@@ -21,7 +19,7 @@ public class AlumnosDerivadasTest {
      @Test
     void buscarAlumnosByNombre(){
          System.out.println(infoTester.NOMBRE);
-         ArrayList<Alumno> resultado = (ArrayList<Alumno>) alumnoRepository.findByNombreAlumno("Carlos");
+         ArrayList<Alumno> resultado = (ArrayList<Alumno>) alumnoRepository.findAlumnoByNombreAlumno("Carlos");
          resultado.forEach(System.out::println);
      }
 

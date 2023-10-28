@@ -1,8 +1,7 @@
 package mx.unam.dgtic.alumnocrud;
 
 import mx.unam.dgtic.alumnocrud.model.Alumno;
-import mx.unam.dgtic.alumnocrud.repository.ALumnoRepository;
-import org.checkerframework.checker.units.qual.A;
+import mx.unam.dgtic.alumnocrud.repository.AlumnoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +15,7 @@ import java.util.Optional;
 public class AlumnoConsultasTest {
 
     @Autowired
-    ALumnoRepository alumnoRepository;
+    AlumnoRepository alumnoRepository;
 
 
     @Test

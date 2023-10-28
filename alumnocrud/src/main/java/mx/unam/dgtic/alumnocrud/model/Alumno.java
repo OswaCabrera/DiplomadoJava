@@ -12,13 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name = "alumnos")
+//Namaed Queries
+@NamedQuery(name="Alumno.buscarAltos",
+    query="SELECT a FROM Alumno a WHERE a.estatura > 1.60")
 public class Alumno {
     @Id
     private String matricula;
-    @Column(name = "nombre")
+    @Column(name = "nombre_alumno")
     private String nombreAlumno;
 
     private String paterno;
@@ -27,4 +29,15 @@ public class Alumno {
 
     @OneToMany(fetch=FetchType.EAGER ,mappedBy = "alumno")
     private List<Calificacion> calificaciones = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Alumno{" +
+                "matricula='" + matricula + '\'' +
+                ", nombreAlumno='" + nombreAlumno + '\'' +
+                ", paterno='" + paterno + '\'' +
+                ", fnac=" + fnac +
+                ", estatura=" + estatura +
+                '}';
+    }
 }

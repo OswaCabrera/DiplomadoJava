@@ -7,8 +7,8 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
-public interface ALumnoRepository extends CrudRepository<Alumno, String> {
-    List<Alumno> findByNombreAlumno(String nom);
+public interface AlumnoRepository extends CrudRepository<Alumno, String> {
+    List<Alumno> findAlumnoByNombreAlumno(String nom);
     List<Alumno> findByPaterno(String pat);
     List<Alumno> findByEstatura(double estatura);
     List<Alumno> findByFnac(Date fnac);
@@ -24,11 +24,13 @@ public interface ALumnoRepository extends CrudRepository<Alumno, String> {
     List<Alumno> findAlumnoByEstaturaLessThanEqual(double estatura);
     List<Alumno> findAlumnoByEstaturaBetween(Double init, Double stop);
     List<Alumno> findAlumnoByEstaturaIn(Collection<Double> alumnos);
-
     List<Alumno> findAlumnoByFnacAfter(Date fnac);
     List<Alumno> findAlumnoByFnacBefore(Date fnac);
     List<Alumno> findAlumnoByNombreAlumnoOrPaterno(String nombre, String paterno);
     List<Alumno> findAlumnoByNombreAlumnoAndPaterno(String nombre, String paterno);
     List<Alumno> findAlumnoByEstaturaOrderByEstatura(Double estatura);
     List<Alumno> findAlumnoByEstaturaOrderByFnac(Double estatura);
+
+    //Named Queries
+    List<Alumno> buscarAltos();
 }
