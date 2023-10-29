@@ -75,7 +75,7 @@ public class AlumnosDerivadasTest {
     @Test
     void buscarPorNombreStartingWithTest(){
         System.out.println(infoTester.NOMBRE);
-        ArrayList<Alumno> resultado = (ArrayList<Alumno>) alumnoRepository.findAlumnoByNombreAlumnoStartingWith("Car");
+        ArrayList<Alumno> resultado = (ArrayList<Alumno>) alumnoRepository.findAlumnoByNombreAlumnoStartingWith("J");
         resultado.forEach(System.out::println);
     }
 

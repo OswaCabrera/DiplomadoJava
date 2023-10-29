@@ -30,7 +30,6 @@ public interface AlumnoRepository extends CrudRepository<Alumno, String> {
     List<Alumno> findAlumnoByNombreAlumnoAndPaterno(String nombre, String paterno);
     List<Alumno> findAlumnoByEstaturaOrderByEstatura(Double estatura);
     List<Alumno> findAlumnoByEstaturaOrderByFnac(Double estatura);
-
     //Named Queries
     List<Alumno> buscarAltos();
 }

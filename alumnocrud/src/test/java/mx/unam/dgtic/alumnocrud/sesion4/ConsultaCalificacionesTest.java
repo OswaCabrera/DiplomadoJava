@@ -43,6 +43,7 @@ public class ConsultaCalificacionesTest {
 
     @Test
     void buscarPorPaternoTest(){
+        System.out.println(infoTester.NOMBRE);
         System.out.println("Buscar por paterno");
         ArrayList<Calificacion> cals = (ArrayList<Calificacion>) calificacionRepository.findCalificacionByAlumnoPaterno("Perez");
         cals.forEach(System.out::println);
@@ -57,6 +58,7 @@ public class ConsultaCalificacionesTest {
 
     @Test
     void buscarCalificacionByNombreYPaterno(){
+        System.out.println(infoTester.NOMBRE);
         System.out.println("Buscar por nombre y paterno");
         ArrayList<Calificacion> cals = (ArrayList<Calificacion>) calificacionRepository. findCalificacionByAlumnoNombreAlumnoAndAlumnoPaterno("Perla", "Calles");
         cals.forEach(System.out::println);

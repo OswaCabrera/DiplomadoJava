@@ -27,6 +27,7 @@ public class Calificacion {
                 "\n- ID: " + id +
                 "\n- Materia: " + materia +
                 "\n- Calificación: " + calificacion +
-                "\n- " + (alumno != null ? alumno.toString() + "\n" : "No asignado");
+                "\n- " + (alumno != null ? alumno.toString()
+                + "\n" : "No asignado");
     }
 }
