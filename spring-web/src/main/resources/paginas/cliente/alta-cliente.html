@@ -6,7 +6,76 @@
 <body>
     <header th:replace="plantillas/plantilla :: header"></header>
     <main class="container text-center">
-        Llamada para alta cliente
+        <h1 th:text="${operacion}"></h1>
+        <div class="card">
+            <h4 class="card-header"><strong>Formulario de registro</strong></h4>
+            <div class="card-body">
+                <form th:action="@{/cliente/entrada-uno}" th:object="${clienteEntity}"
+                      method="post">
+                    <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+                        Verifique los siguientes errores
+                        <ul>
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control"
+                                    id="nombre" name="nombre"
+                                       placeholder="Ingrese su nombre"
+                                       th:field="*{nombre}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="apellidoPaterno">Apellido</label>
+                                <input type="text" class="form-control"
+                                       id="apellidoPaterno" name="apellidoPaterno"
+                                       placeholder="Ingrese su apellido paterno"
+                                th:field="*{apellidoPaterno}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="nombre">Correo</label>
+                                <input type="text" class="form-control"
+                                       id="correo" name="correo"
+                                       th:field="*{correo}"
+                                       placeholder="example@example.com">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tarjetaCredito">Tarjeta de Credito</label>
+                                <input type="text" class="form-control"
+                                       id="tarjetaCredito" name="tarjetaCredito"
+                                       th:field="*{tarjetaCredito}"
+                                       placeholder="2373892">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="telefono">Telefono</label>
+                                <input type="text" class="form-control"
+                                       id="telefono" name="telefono"
+                                       th:field="*{telefono}"
+                                       placeholder="5586898972">
+
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <br/>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id_cte" th:field="*{id_cte}">
+                </form>
+            </div>
+        </div>
     </main>
     <footer th:replace="plantillas/plantilla :: footer"></footer>
 </body>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="plantillas/plantilla :: head"></head>
+</head>
+<body>
+    <header th:replace="plantillas/plantilla :: header"></header>
+    <main class="container text-center">
+      <h1>Habitaciones</h1>
+      <ul class="list-group">
+        <li class="list-group-item active">Habitacion 1</li>
+        <li class="list-group-item disabled">Habitacion 2</li>
+        <li class="list-group-item">Habitacion 3</li>
+        <li class="list-group-item">Habitacion 4</li>
+        <li class="list-group-item">Habitacion 5</li>
+      </ul>
+    </main>
+    <footer th:replace="plantillas/plantilla :: footer"></footer>
+</body>
+</html>
