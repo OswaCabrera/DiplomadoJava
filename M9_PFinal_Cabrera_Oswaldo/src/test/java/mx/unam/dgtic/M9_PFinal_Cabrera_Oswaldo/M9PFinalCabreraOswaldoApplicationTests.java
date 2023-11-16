@@ -8,8 +8,9 @@ import org.springframework.test.context.jdbc.Sql;
 class M9PFinalCabreraOswaldoApplicationTests {
 
 	@Test
-	@Sql({"/base_caja_ahorro_script.sql"})
+	@Sql({"/base_caja_ahorro_script.sql", "/data_caja.sql"})
 	void contextLoads() {
+		System.out.println(InfoTester.NOMBRE);
 		System.out.println("Creando esquema y poblando tabla");
 	}
 
