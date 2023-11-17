@@ -38,14 +38,6 @@ public class ClienteController {
         return "cliente/alta-cliente";
     }
 
-    /*
-    @GetMapping("/lista-cliente")
-    public String paginaListaCliente(Model model){
-        return "cliente/lista-cliente";
-    }
-
-     */
-
     @PostMapping("alta-cliente")
     public String almacenarCliente(@RequestParam("nombre")String nombre, @RequestParam("apellidoPaterno")String apellido, Model model){
         System.out.println(
@@ -93,20 +85,6 @@ public class ClienteController {
         //webDataBinder.addValidators(clienteValidacion);
         binder.registerCustomEditor(String.class, "nombre", new MayusculasConverter());
     }
-
-    /*
-    @GetMapping("lista-cliente")
-    public String paginaLista(Model model, HttpServletRequest request){
-        Map<String,?> input= RequestContextUtils.getInputFlashMap(request);
-        ClienteEntity c=(ClienteEntity) input.get("objeto");
-        System.out.println(c.toString());
-        model.addAttribute("operacion","Lista Cliente");
-        return "cliente/lista-cliente";
-    }
-
-
-     */
-
 
     @GetMapping("lista-cliente")
     public String paginaLista(@RequestParam(name="page", defaultValue = "0") int page, Model model){

@@ -6,19 +6,36 @@
 <body>
     <header th:replace="plantillas/plantilla :: header"></header>
     <main class="container text-center">
-      <ul class="list-group">
-        <li class="list-group-item">Lista Hoteles</li>
+        <table th:if="${!hoteles.isEmpty()}" class="table table-striped table-hover table-sm">
+            <thead class="table-dark table-bordered">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Clasificacion</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Imagen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="h: ${hoteles}">
+                <td th:text="${h.nombre}"></td>
+                <td th:text="${h.direccion}"></td>
+                <td th:text="${h.telefono}"></td>
+                <td th:text="${h.clasificacion}"></td>
+                <td th:text="${h.correo}"></td>
+                <td th:text="${h.imagen}"></td>
+                <td>
+                    <a th:href="@{/hotel/modificar-hotel/{id} (id=${h.id_htl})}"
+                       class="btn btn-success" ><i class="fas fa-pencil-alt" aria-hidden="true"></i>Modificar</a>
+                    <a th:href="@{/hotel/borrar-hotel/{id} (id=${h.id_htl})}"
+                       class="btn btn-danger" ><i class="fas fa-trash" aria-hidden="true"></i>Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
 
-
-        <li class="list-group-item list-group-item-primary">Hotel 1</li>
-        <li class="list-group-item list-group-item-secondary">Hotel 2</li>
-        <li class="list-group-item list-group-item-success">Hotel 3</li>
-        <li class="list-group-item list-group-item-danger">Hotel 4</li>
-        <li class="list-group-item list-group-item-warning">Hotel 5</li>
-        <li class="list-group-item list-group-item-info">Hotel 6</li>
-        <li class="list-group-item list-group-item-light">Hotel 7</li>
-        <li class="list-group-item list-group-item-dark">Hotel 7</li>
-      </ul>
+        </table>
+        <nav th:replace="plantillas/pag-nav:: paginador"></nav>
     </main>
     <footer th:replace="plantillas/plantilla :: footer"></footer>
 </body>
