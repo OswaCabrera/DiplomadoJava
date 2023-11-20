@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<body>
+<script type="text/javascript" th:fragment="jscliente">
+        $(document).ready(function(){
+        $("#nombre").autocomplete({
+            source: function(request,response){
+              $.ajax({
+                    url:"/reservacion/buscar-cliente/"+request.term,
+                    dataType:"json",
+                    data:{
+                        term: request.term
+                    },
+                    success: function(data){
+                        response($.map(data,function(item){
+                            return{
+                                 value:item.id_cte,
+                                 label:item.nombre + " " +item.apellidoPaterno,
+                            };
+                        }));
+                    },
+              });
+            },
+            select: function(event,ui){
+               $("#nombre").val(ui.item.label);
+               $("#idCliente").val(ui.item.value);
+               return false;
+            }
+        });
+    }
+    );
+
+
+</script>
+<script type="text/javascript" th:fragment="jshotel">
+        $(document).ready(function(){
+        $("#hotel").autocomplete({
+            source: function(request,response){
+              $.ajax({
+                    url:"/reservacion/buscar-hotel/"+request.term,
+                    dataType:"json",
+                    data:{
+                        term: request.term
+                    },
+                    success: function(data){
+                        response($.map(data,function(item){
+                            return{
+                                 value:item.id_htl,
+                                 label:item.nombre + " " +item.direccion,
+                            };
+                        }));
+                    },
+              });
+            },
+            select: function(event,ui){
+               $("#hotel").val(ui.item.label);
+               $("#idHotel").val(ui.item.value);
+                llamada(ui.item.value);
+               return false;
+            }
+        });
+
+     }
+    );
+
+
+
+</script>
+<script type="text/javascript" th:fragment="jshabitacion">
+    function llamada(dato) {
+        $.ajax({
+                url: "/reservacion/buscar-habitacion/"+dato,
+                dataType: "json",
+            success:function(response){
+                var len = response.length;
+                $("#habitacion").empty();
+                for( var i = 0; i<len; i++){
+                    var id = response[i]['id_hbt'];
+                    var name ="nombre: " + response[i]['nombre']+" precio: "+response[i]['precio'];
+                    $("#habitacion").append("<option value='"+id+"'>"+name+"</option>");
+
+                }
+        }
+    });
+  }
+
+
+</script>
+
+</body>
+</html>

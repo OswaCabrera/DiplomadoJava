@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="plantillas/plantilla :: head"></head>
+</head>
+<body>
+<header th:replace="plantillas/plantilla :: header"></header>
+<main class="container text-center">
+    <h1 th:text="${operacion}"></h1>
+    <div class="card">
+        <h4 class="card-header"><strong>Formulario de registro</strong></h4>
+        <div class="card-body">
+            <form th:action="@{/reservacion/buscar-reservacion}" th:object=${reservacion} method="post">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Cliente</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   placeholder="Nombre del cliente" required="required"
+                                   th:field="*{cliente.nombre}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </div>
+            </form>
+            <a th:if="${reservaciones.size()>0}" class="btn btn-primary btn-xs float-right" th:href="@{'/reservacion/pdf'(format=pdf)}"
+                            target="_blank">Pdf</a>
+            <table th:if="${reservaciones.size()>0}" class="table table-striped table-hover table-sm">
+                <thead class="table-dark table-bordered">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha de reservación</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Hotel</th>
+                    <th scope="col">Habitación</th>
+                    <th scope="col">Precio</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="res: ${reservaciones}">
+                    <td th:text="${res.cliente.nombre}+ ' '+${res.cliente.apellidoPaterno}"></td>
+                    <td th:text="${#dates.format(res.fechaReservacion,'dd/MM/yyyy')}"></td>
+                    <td th:text="${#dates.format(res.fechaInicio,'dd/MM/yyyy')}"></td>
+                    <td th:text="${res.habitacion.hotel.nombre}"></td>
+                    <td th:text="${res.habitacion.nombre}"></td>
+                    <td th:text="${res.habitacion.precio}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer th:replace="plantillas/plantilla :: footer"></footer>
+<script th:replace="reservacion/js/autocompletar :: jscliente"></script>
+</body>
+</html>
