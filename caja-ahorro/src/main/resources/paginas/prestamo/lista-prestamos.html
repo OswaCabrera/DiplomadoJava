@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+<head th:replace="plantillas/plantilla :: head"></head>
+</head>
+<body>
+    <header th:replace="plantillas/plantilla :: header"></header>
+    <main class="container text-center">
+        <h1 th:text="${contenido}"></h1>
+        <table th:if="${!prestamos.isEmpty()}" class="table table-striped table-hover table-sm">
+            <thead class="table-dark table-bordered">
+            <tr>
+                <th scope="col">Id Prestamo</th>
+                <th scope="col">Usuario Solicitante</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Intereses</th>
+                <th scope="col">Mensualidades</th>
+                <th scope="col">Monto Final</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Estatus del prestamos</th>
+                <th scope="col">Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ps: ${prestamos}">
+                <td th:text="${ps.idPrestamo}"></td>
+                <td th:text="${ps.usuario.Nombre}"></td>
+                <td th:text="${ps.monto}"></td>
+                <td th:text="${ps.interes}"></td>
+                <td th:text="${ps.mensualidades}"></td>
+                <td th:text="${ps.montoFinal}"></td>
+                <td th:text="${ps.fecha}"></td>
+                <td th:text="${ps.estatusPrestamosId.nombre}"></td>
+                <td>
+                    <a th:href="@{/prestamo/modificar-prestamo/{id} (id=${ps.idPrestamo})}"
+                       class="btn btn-success" ><i class="fas fa-pencil-alt" aria-hidden="true"></i>Modificar</a>
+                    <a th:href="@{/prestamo/borrar-prestamo/{id} (id=${ps.idPrestamo})}"
+                       class="btn btn-danger" ><i class="fas fa-trash" aria-hidden="true"></i>Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav th:replace="plantillas/pag-nav:: paginador"></nav>
+    </main>
+    <footer th:replace="plantillas/plantilla :: footer"></footer>
+</body>
+</html>
