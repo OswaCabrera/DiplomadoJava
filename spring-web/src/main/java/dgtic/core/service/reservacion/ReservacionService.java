@@ -1,7 +1,7 @@
 package dgtic.core.service.reservacion;
 
-import dgtic.core.model.entities.HotelEntity;
-import dgtic.core.model.entities.ReservacionEntity;
+import dgtic.core.model.entity.HotelEntity;
+import dgtic.core.model.entity.ReservacionEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

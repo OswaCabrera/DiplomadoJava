@@ -4,56 +4,96 @@
 <head th:replace="plantillas/plantilla :: head"></head>
 </head>
 <body>
-    <header th:replace="plantillas/plantilla :: header"></header>
-    <main class="container text-center">
-        <h1>Alta reservacion</h1>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+<header th:replace="plantillas/plantilla :: header"></header>
+<main class="container text-center">
+    <h1 th:text="${operacion}"></h1>
+    <div class="card">
+        <h4 class="card-header"><strong>Formulario de registro</strong></h4>
+        <div class="card-body">
+            <form th:action="@{/reservacion/alta-reservacion}" th:object=${reservacion} method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Cliente</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   placeholder="Nombre del cliente" required="required"
+                                   th:field="*{cliente.nombre}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="hotel">Nombre del Hotel</label>
+                            <input type="text" class="form-control" id="hotel" name="hotel"
+                                   placeholder="Nombre del hotel" value=" "
+                                   th:field="*{habitacion.hotel.id_htl}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="habitacion">Nombre de la habitación</label>
+                            <select class="form-select" id="habitacion" name="habitacion">
+                                <option selected>Seleccione primero un hotel</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fechaReservacion">Fecha de la Reservación</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control"
+                                       id="fechaReservacion" name="fechaReservacion"
+                                       placeholder="Fecha de Reservación" required="required"
+                                       th:field="*{fechaReservacion}" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fechaInicio">Fecha de inicio de vacaciones</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control"
+                                       id="fechaInicio" name="fechaInicio"
+                                       placeholder="Inicio de vacaciones fecha" required="required"
+                                       th:field="*{fechaInicio}" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="fechaTermino">Fecha de término de vacaciones</label>
+                            <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control"
+                                       id="fechaTermino" name="fechaTermino"
+                                       id="fechaTermino" name="fechaTermino"
+                                       placeholder="Termino de vacaciones fecha" required="required"
+                                       th:field="*{fechaTermino}" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputPassword4">Password</label>
-                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputCity">City</label>
-                    <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputState">State</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-    </main>
-    <footer th:replace="plantillas/plantilla :: footer"></footer>
+                <input type="hidden" id="idCliente" name="idCliente" th:field="*{cliente.id_cte}" />
+                <input type="hidden" id="idHotel" name="idHotel" th:field="*{habitacion.hotel.id_htl}"/>
+<!--                <input type="hidden" id="idReservacion" name="idReservacion"/>-->
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="plantillas/plantilla :: footer"></footer>
+<script th:replace="reservacion/js/autocompletar :: jscliente"></script>
+<script th:replace="reservacion/js/autocompletar :: jshotel"></script>
+<script th:replace="reservacion/js/autocompletar :: jshabitacion"></script>
 </body>
 </html>

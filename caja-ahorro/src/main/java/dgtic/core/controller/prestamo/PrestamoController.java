@@ -5,12 +5,14 @@ import dgtic.core.model.entity.UsuarioEntity;
 import dgtic.core.service.prestamo.PrestamoService;
 import dgtic.core.service.usuario.UsuarioService;
 import dgtic.core.util.RenderPagina;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -37,9 +39,16 @@ public class PrestamoController {
     }
 
     @PostMapping("registrar-prestamo")
-    public String registrarPrestamo(@ModelAttribute("prestamoEntity") PrestamoEntity prestamoEntity,
+    public String registrarPrestamo(@Valid @ModelAttribute("prestamoEntity") PrestamoEntity prestamoEntity,
+                                    BindingResult result,
                                     Model model,
                                     RedirectAttributes flash){
+        if(result.hasErrors()){
+            model.addAttribute("operacion","Error en los datos");
+            List<UsuarioEntity> selectUsuario =usuarioService.buscarUsuario();
+            model.addAttribute("selectUsuario",selectUsuario);
+            return "prestamo/alta-prestamo";
+        }
         try {
             prestamoService.guardar(prestamoEntity);
             flash.addFlashAttribute("success","Se almaceno con éxito");

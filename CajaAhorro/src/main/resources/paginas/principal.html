@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      lang="es">
-<head th:replace="plantillas/plantilla :: head"></head>
-</head>
+      lang="es"> <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Title</title> </head>
 <body>
-    <header th:replace="plantillas/plantilla :: header"></header>
-    <main class="container text-center">
-        <h1 th:text="${contenido}"></h1>
-    </main>
-    <footer th:replace="plantillas/plantilla :: footer"></footer>
-</body>
-</html>
+<h1>Página de Inicio </h1>
+<p> Bienvenido a la aplicación <span th:text="${nombreAplicacion}"></span></p>
+</body> </html>

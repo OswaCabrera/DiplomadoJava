@@ -1,6 +1,6 @@
 package dgtic.core.service.habitacion;
 
-import dgtic.core.model.entities.HabitacionEntity;
+import dgtic.core.model.entity.HabitacionEntity;
 import dgtic.core.repository.HabitacionRepository;
 import dgtic.core.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;

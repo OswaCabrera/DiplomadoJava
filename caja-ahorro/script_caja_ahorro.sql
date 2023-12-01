@@ -37,7 +37,7 @@ create table if not exists ESTATUS_TRANSACCION
     ESTATUS_TRANSACCION_ID int auto_increment
         primary key,
     NOMBRE                 varchar(40) not null,
-    DESCRIPCION            varchar(40) not null
+    DESCRIPCION            text not null
 );
 
 create table if not exists HISTORICO_ESTATUS_CUENTA
@@ -156,9 +156,6 @@ create table if not exists USUARIO
     CONTRASENA        varchar(250) not null,
     APELLIDO_MATERNO  varchar(40)  not null,
     NUMERO_TELEFONICO varchar(12)  not null,
-    CALLE             varchar(50)  not null,
-    ESTADO            varchar(40)  not null,
-    ZIP               int          not null,
     NOMBRE            varchar(40)  not null,
     APELLIDO_PATERNO  varchar(40)  not null,
     ROL_ID            tinyint      not null,

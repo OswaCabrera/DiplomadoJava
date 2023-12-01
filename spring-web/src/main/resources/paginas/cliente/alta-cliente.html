@@ -23,56 +23,55 @@
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control"
-                                    id="nombre" name="nombre"
-                                       placeholder="Ingrese su nombre"
-                                       th:field="*{nombre}">
+                                        id="nombre" name="nombre"
+                                        placeholder="Nombre del Usuario"
+                                        th:field="*{nombre}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="apellidoPaterno">Apellido</label>
+                                <label for="apellidoPaterno">Apellido Paterno</label>
                                 <input type="text" class="form-control"
                                        id="apellidoPaterno" name="apellidoPaterno"
-                                       placeholder="Ingrese su apellido paterno"
-                                th:field="*{apellidoPaterno}">
+                                       th:field="*{apellidoPaterno}"
+                                       placeholder="Apellido Paterno">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="nombre">Correo</label>
+                                <label for="correo">Correo</label>
                                 <input type="text" class="form-control"
                                        id="correo" name="correo"
                                        th:field="*{correo}"
-                                       placeholder="example@example.com">
-
+                                       placeholder="demo@demo.com">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="tarjetaCredito">Tarjeta de Credito</label>
+                                <label for="tarjetaCredito">Tarjeta de Crédito</label>
                                 <input type="text" class="form-control"
                                        id="tarjetaCredito" name="tarjetaCredito"
                                        th:field="*{tarjetaCredito}"
-                                       placeholder="2373892">
-
+                                       placeholder="213123131">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="telefono">Telefono</label>
+                                <label for="telefono">Teléfono</label>
                                 <input type="text" class="form-control"
                                        id="telefono" name="telefono"
-                                       th:field="*{telefono}"
-                                       placeholder="5586898972">
-
+                                       th:field="*{numeroTelefonico}"
+                                       placeholder="5510101010">
                             </div>
                         </div>
+
                         <div class="col-md-1">
                             <br/>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
+
                     </div>
-                    <input type="hidden" name="id_cte" th:field="*{id_cte}">
+                    <input type="hidden" name="id_cte" th:field="*{id_usuario}"/>
                 </form>
             </div>
         </div>

@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD,ElementType.METHOD})
 public @interface NoEspacioNoVacio {
-    String message() default "No debe ser vacio";
+    String message() default "No debe ser vació";
 
     Class<?>[] groups() default {};
 

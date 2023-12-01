@@ -19,7 +19,7 @@ public class InicioController {
 
     @GetMapping("/inicio")
     public String paginaPrincipal(Model model){
-        model.addAttribute("contenido","lo que quieras");
+        model.addAttribute("contenido","Bienvenido a la aplicación de la Caja de Ahorro");
         return "principal";
     }
 }

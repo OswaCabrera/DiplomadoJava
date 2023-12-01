@@ -26,8 +26,8 @@ public class CuentaServicioImpl implements CuentaService {
     }
 
     @Override
-    public void borrar(Integer id) {
-        cuentaRepository.deleteById(id);
+    public void borrar(CuentaEntity cuenta) {
+        cuentaRepository.delete(cuenta);
     }
 
     @Override

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 public interface CuentaService {
     Page<CuentaEntity> findAll(Pageable pageable);
     void guardar(CuentaEntity cuenta);
-    void borrar(Integer id);
+    void borrar(CuentaEntity cuenta);
     CuentaEntity buscarCuentaId(Integer id);
 
     CuentaEntity buscarCuentaUsuarioId(Integer id);

@@ -20,7 +20,7 @@ direccion					VARCHAR(100) NOT NULL,
 clasificacion				SMALLINT NOT NULL,
 correo						VARCHAR(40) NOT NULL UNIQUE,
 telefono					VARCHAR(10) NOT NULL UNIQUE,
-imagen						VARCHAR(100),
+imagen						VARCHAR(100) DEFAULT 'Sin_imagen_disponible.jpg',
 PRIMARY KEY(id_htl)
 )DEFAULT CHARACTER SET UTF8MB4;
 
@@ -30,7 +30,7 @@ nombre						VARCHAR(50) NOT NULL,
 refrigerador				BOOLEAN DEFAULT FALSE,
 numero_camas				SMALLINT NOT NULL,
 precio						FLOAT(7,2),
-imagen						VARCHAR(100),
+imagen						VARCHAR(100) DEFAULT 'Sin_imagen_disponible.jpg',
 id_htl	 					INTEGER NOT NULL,
 PRIMARY KEY(id_hbt),
 FOREIGN KEY(id_htl) REFERENCES hotel(id_htl) ON DELETE CASCADE
@@ -71,19 +71,19 @@ INSERT INTO cliente(nombre,apellido_paterno,tarjeta_credito,correo,telefono) VAL
 					("Mario","Delgado",1143342154,"mario@gmail.com",9234567891),
 					("Rebeca","Hernandez",11466762154,"rebeca@gmail.com",5233456789);
 INSERT INTO hotel(nombre,direccion,clasificacion,correo,telefono,imagen) VALUES
-					("Hotel 1","Dirección 1",5,"hotel_1@gmail.com",2234567891,"direccion1"),
-					("Hotel 2","Dirección 2",8,"hotel_2@gmail.com",3234567891,"direccion2"),
-					("Hotel 3","Dirección 3",9,"hotel_3@gmail.com",4234567891,"direccion3");
-INSERT INTO habitacion(nombre,refrigerador,numero_camas,precio,imagen,id_htl) VALUES
-					("Habitacion 1_1",false,2,850.99,"img1",1),
-					("Habitacion 1_2",true,1,450.99,"img2",1),
-					("Habitacion 1_3",true,2,1850.99,"img3",1),
-					("Habitacion 2_1",false,3,1850.99,"img1",2),
-					("Habitacion 2_2",true,2,750.99,"img2",2),
-					("Habitacion 2_3",true,1,2850.99,"img3",2),
-					("Habitacion 3_1",false,2,150.99,"img1",3),
-					("Habitacion 3_2",true,2,250.99,"img2",3),
-					("Habitacion 3_3",true,2,850.99,"img3",3);
+					("Hotel 1","Dirección 1",5,"hotel_1@gmail.com",2234567891,'Sin_imagen_disponible.jpg'),
+					("Hotel 2","Dirección 2",4,"hotel_2@gmail.com",3234567891,'Sin_imagen_disponible.jpg'),
+					("Hotel 3","Dirección 3",2,"hotel_3@gmail.com",4234567891,'Sin_imagen_disponible.jpg');
+INSERT INTO habitacion(nombre,refrigerador,numero_camas,precio,id_htl) VALUES
+					("Habitacion 1_1",false,2,850.99,1),
+					("Habitacion 1_2",true,1,450.99,1),
+					("Habitacion 1_3",true,2,1850.99,1),
+					("Habitacion 2_1",false,3,1850.99,2),
+					("Habitacion 2_2",true,2,750.99,2),
+					("Habitacion 2_3",true,1,2850.99,2),
+					("Habitacion 3_1",false,2,150.99,3),
+					("Habitacion 3_2",true,2,250.99,3),
+					("Habitacion 3_3",true,2,850.99,3);
 INSERT INTO reservacion(fecha_reservacion,fecha_inicio,fecha_termino,id_cte,id_hbt) VALUES
 					(NOW(),"2023-10-20","2023-10-24",1,2),
 					(NOW(),"2023-10-10","2023-10-24",2,6),

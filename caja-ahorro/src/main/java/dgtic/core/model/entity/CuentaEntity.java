@@ -28,7 +28,7 @@ public class CuentaEntity {
     @JoinColumn(name = "estatus_cuenta_id")
     private EstatusCuentaEntity estatus;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "usuario_id")
     private UsuarioEntity usuario;
 

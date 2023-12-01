@@ -2,40 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org"
       lang="es">
 <head th:replace="plantillas/plantilla :: head"></head>
-</head>
+
 <body>
     <header th:replace="plantillas/plantilla :: header"></header>
     <main class="container text-center">
-        <table th:if="${!hoteles.isEmpty()}" class="table table-striped table-hover table-sm">
-            <thead class="table-dark table-bordered">
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Clasificacion</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Imagen</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="h: ${hoteles}">
-                <td th:text="${h.nombre}"></td>
-                <td th:text="${h.direccion}"></td>
-                <td th:text="${h.telefono}"></td>
-                <td th:text="${h.clasificacion}"></td>
-                <td th:text="${h.correo}"></td>
-                <td th:text="${h.imagen}"></td>
-                <td>
-                    <a th:href="@{/hotel/modificar-hotel/{id} (id=${h.id_htl})}"
-                       class="btn btn-success" ><i class="fas fa-pencil-alt" aria-hidden="true"></i>Modificar</a>
-                    <a th:href="@{/hotel/borrar-hotel/{id} (id=${h.id_htl})}"
-                       class="btn btn-danger" ><i class="fas fa-trash" aria-hidden="true"></i>Eliminar</a>
-                </td>
-            </tr>
-            </tbody>
-
-        </table>
-        <nav th:replace="plantillas/pag-nav:: paginador"></nav>
+      <h1 th:text="${operacion}"></h1>
+      <table th:if="${!hotel.isEmpty()}" class="table table-striped table-hover table-sm">
+        <thead class="table-dark table-bordered">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Clasificación</th>
+          <th scope="col">Correo</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Imagen</th>
+          <th scope="col">Operaciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ht: ${hotel}">
+          <td th:text="${ht.nombre}"></td>
+          <td th:text="${ht.clasificacion}"></td>
+          <td th:text="${ht.correo}"></td>
+          <td th:text="${ht.telefono}"></td>
+          <td>
+            <img th:src="@{'/imagenes/'+${ht.imagen}}" width="20%" height="20%"><br/>
+          </td>
+          <td>
+            <a th:href="@{/hotel/modificar-hotel/{id} (id=${ht.id_htl})}"
+               class="btn btn-success" ><i class="fas fa-pencil-alt" aria-hidden="true"></i>Modificar</a>
+            <a th:href="@{/hotel/borrar-hotel/{id} (id=${ht.id_htl})}"
+               class="btn btn-danger"><i class="fas fa-trash" aria-hidden="true"></i>Eliminar</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <nav th:replace="plantillas/pag-nav :: paginador"></nav>
     </main>
     <footer th:replace="plantillas/plantilla :: footer"></footer>
 </body>

@@ -45,7 +45,7 @@ public class HotelEntity implements Serializable {
     @JsonIgnore
     @OneToMany(
             fetch = FetchType.EAGER,
-            orphanRemoval = true,
+            orphanRemoval = false,
             mappedBy = "hotel"
     )
     private Set<HabitacionEntity> habitacionSet;

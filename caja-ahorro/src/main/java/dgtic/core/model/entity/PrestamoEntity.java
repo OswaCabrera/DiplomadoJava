@@ -2,6 +2,8 @@ package dgtic.core.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,10 +22,13 @@ public class PrestamoEntity {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer idPrestamo;
 
+    @NotNull(message = "El número de mensualidades no debe ser vacio")
     private Integer mensualidades;
 
+    @NotNull(message = "El interes no debe ser vacio")
     private Integer interes;
 
+    @NotNull(message = "El monto no debe ser vacio")
     @Column(name = "monto_original")
     private Integer monto;
 

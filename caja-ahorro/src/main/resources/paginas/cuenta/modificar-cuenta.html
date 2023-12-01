@@ -9,6 +9,19 @@
         <h1 th:text="${contenido}"></h1>
     </main>
     <h1 th:text="${operacion}"></h1>
+
+    <div class="card">
+        <h4 class="card-header"><strong>Datos de la cuenta</strong></h4>
+        <div class="card-body">
+            <h4>Nombre: </h4>
+            <h4 th:text="${cuentaEntity.usuario.nombre}"></h4>
+            <h4>Saldo: </h4>
+            <h4 th:text="${cuentaEntity.saldo}">Saldo</h4>
+            <h4>Fecha Apertura: </h4>
+            <h4 th:text="${cuentaEntity.fechaApertura}"></h4>
+        </div>
+    </div>
+    <h4 class="card-header"><strong>Cambiar estatus de la cuenta</strong></h4>
     <form th:action="@{/cuenta/actualizar-cuenta}" th:object="${cuentaEntity}"
           method="post">
       <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
@@ -17,21 +30,22 @@
           <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
         </ul>
       </div>
-      <div class="row">
-        <div class="col-md-6">
+      <div class="col-md-6">
           <div class="form-group">
-            <label for="estatus">Estatus de la cuenta:</label>
-            <input type="number" class="form-control"
-                   id="estatus" name="estatus"
-                   th:field="*{estatus}">
+              <label for="estatus">Estatus de la cuenta:</label>
+              <select class="form-control" th:field="*{estatus}" id="estatus" name="estatus" required="requiered">
+                  <option th:each="sel : ${selectEstatusCuenta}" th:value="${sel.idEstatusCuenta}" th:text="${sel.nombre}"/>
+              </select>
           </div>
-        </div>
+      </div>
         <div class="col-md-1">
           <br/>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
       </div>
       <input type="hidden" name="idCuenta" th:field="*{idCuenta}"/>
+        <input type="hidden" name="saldo" th:field="*{saldo}"/>
+        <input type="hidden" name="usuario" th:field="*{usuario}"/>
     </form>
     <footer th:replace="plantillas/plantilla :: footer"></footer>
 </body>

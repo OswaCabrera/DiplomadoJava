@@ -1,10 +1,13 @@
 package dgtic.core.controller.cuenta;
 
 import dgtic.core.model.entity.CuentaEntity;
+import dgtic.core.model.entity.EstatusCuentaEntity;
 import dgtic.core.model.entity.PrestamoEntity;
 import dgtic.core.model.entity.UsuarioEntity;
 import dgtic.core.service.cuenta.CuentaService;
+import dgtic.core.service.estatus.EstatusCuentaService;
 import dgtic.core.util.RenderPagina;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,11 +17,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Date;
+import java.util.List;
+
 @Controller
 @RequestMapping("cuenta")
 public class CuentaController {
     @Autowired
     private CuentaService cuentaService;
+
+    @Autowired
+    private EstatusCuentaService estatusCuentaService;
 
     @GetMapping("lista-cuentas")
     public String paginaLista(@RequestParam(name="page",defaultValue = "0") int page,
@@ -34,8 +43,10 @@ public class CuentaController {
 
     @GetMapping("modificar-cuenta/{id}")
     public String modificarCliente(@PathVariable("id") Integer id, Model model){
-        CuentaEntity cuenta=cuentaService.buscarCuentaId(id);
-        model.addAttribute("cuentaEntity",cuenta);
+        List<EstatusCuentaEntity> selectEstatusCuenta=estatusCuentaService.buscarEstatusCuentas();
+        model.addAttribute("selectEstatusCuenta",selectEstatusCuenta);
+        CuentaEntity cuentaEntity =cuentaService.buscarCuentaId(id);
+        model.addAttribute("cuentaEntity",cuentaEntity);
         return "cuenta/modificar-cuenta";
     }
 
@@ -44,6 +55,7 @@ public class CuentaController {
                                     Model model,
                                     RedirectAttributes flash){
             try {
+                cuentaEntity.setFechaApertura(new Date());
                 cuentaService.guardar(cuentaEntity);
                 flash.addFlashAttribute("success","Se almaceno con éxito");
             }

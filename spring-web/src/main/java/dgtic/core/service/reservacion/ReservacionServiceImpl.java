@@ -1,6 +1,6 @@
 package dgtic.core.service.reservacion;
 
-import dgtic.core.model.entities.ReservacionEntity;
+import dgtic.core.model.entity.ReservacionEntity;
 import dgtic.core.repository.ReservacionRepository;
 import dgtic.core.service.cliente.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;

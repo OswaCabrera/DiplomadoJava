@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface ClienteService {
     Page<ClienteEntity> findAll(Pageable pageable);
-    void guardar(ClienteEntity clienteEntity);
+    void guardar(ClienteEntity cliente);
     void borrar(Integer id);
     ClienteEntity buscarClienteId(Integer id);
-    List<ClienteEntity> buscarClientes(String nombre);
+    List<ClienteEntity> buscarClientes();
     List<ClienteEntity> buscarClientePatron(String patron);
 }

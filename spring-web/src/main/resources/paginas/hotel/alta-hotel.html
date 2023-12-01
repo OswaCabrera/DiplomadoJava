@@ -2,82 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org"
       lang="es">
 <head th:replace="plantillas/plantilla :: head"></head>
-</head>
 <body>
-    <header th:replace="plantillas/plantilla :: header"></header>
-    <main class="container text-center">
-        <h1 th:text="${operacion}"></h1>
-        <div class="card">
-            <h4 class="card-header"><strong>Formulario de registro</strong></h4>
-            <div class="card-body">
-                <form th:action="@{/hotel/entrada-uno}" th:object="${hotelEntity}" method="post">
-                    <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
-                        Verifique los siguientes errores
-                        <ul>
-                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
-                        </ul>
+<header th:replace="plantillas/plantilla :: header"></header>
+
+<main class="container text-center">
+    <h1 th:text="${operacion}"></h1>
+    <div class="card">
+        <h4 class="card-header"><strong>Formulario de registro</strong></h4>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-floating">
+                        <form th:action="@{/hotel/salvar}" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="imagenarchivo">Subir imagen (opcional)</label>
+                                <div class="input-group mb-1">
+                                    <input type="file" class="form-control" id="imagenarchivo" name="imagenarchivo"/>
+                                    <button type="submit" class="btn btn-primary">Subir imagen</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control"
-                                       id="nombre" name="nombre"
-                                       placeholder="Ingrese su nombre"
-                                       th:field="*{nombre}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="direccion">Direccion</label>
-                                <input type="text" class="form-control"
-                                       id="direccion" name="direccion"
-                                       placeholder="Direccion"
-                                       th:field="*{direccion}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="clasificacion">Clasificacion</label>
-                                <input type="number" class="form-control"
-                                       id="clasificacion" name="clasificacion"
-                                       th:field="*{clasificacion}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="correo">Correo</label>
-                                <input type="text" class="form-control"
-                                       id="correo" name="correo"
-                                       th:field="*{correo}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="telefono">Telefono</label>
-                                <input type="text" class="form-control"
-                                       id="telefono" name="telefono"
-                                       th:field="*{telefono}">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="imagen">Imagen</label>
-                                <input type="imagen" class="form-control"
-                                       id="imagen" name="imagen"
-                                       th:field="*{imagen}">
-                            </div>
-                        </div>
-                        <div class="col-md-1">
-                            <br/>
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </div>
-                    <input type="hidden" name="id_hbt" th:field="*{id_htl}">
-                </form>
+                </div>
             </div>
+            <form th:action="@{/hotel/entrada-hotel}" th:object="${hotel}" method="post">
+                <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role="alert">
+                    Verifique los siguientes errores
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   placeholder="Nombre del hotel"
+                                   th:field="*{nombre}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <textarea class="form-control" id="direccion"
+                                      rows="3"
+                                      name="direccion"
+                                      placeholder="Dirección del Hotel"
+                                      th:field="*{direccion}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="clasificacion">Clasificación del hotel</label>
+                            <input type="range" class="form-range" min="0" max="5" step="1" id="clasificacion"
+                                   th:field="*{clasificacion}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="correo">Correo electrónico</label>
+                            <input type="text" class="form-control" id="correo" name="correo"
+                                   placeholder="Correo electrónico"
+                                   th:field="*{correo}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono"
+                                   placeholder="Número de teléfono" required="required"
+                                   th:field="*{telefono}">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <br/>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+                <input type="hidden" name="id_htl" th:field="*{id_htl}"/>
+            </form>
         </div>
-    </main>
-    <footer th:replace="plantillas/plantilla :: footer"></footer>
+    </div>
+</main>
+<footer th:replace="plantillas/plantilla :: footer"></footer>
 </body>
 </html>

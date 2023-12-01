@@ -1,6 +1,6 @@
 package dgtic.core.service.habitacion;
 
-import dgtic.core.model.entities.HabitacionEntity;
+import dgtic.core.model.entity.HabitacionEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

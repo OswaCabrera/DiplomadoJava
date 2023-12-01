@@ -1,7 +1,7 @@
 package dgtic.core.service.hotel;
 
-import dgtic.core.model.entities.ClienteEntity;
-import dgtic.core.model.entities.HotelEntity;
+import dgtic.core.model.entity.ClienteEntity;
+import dgtic.core.model.entity.HotelEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

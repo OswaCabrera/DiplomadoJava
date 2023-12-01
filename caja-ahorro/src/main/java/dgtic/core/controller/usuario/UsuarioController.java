@@ -7,6 +7,7 @@ import dgtic.core.service.cuenta.CuentaService;
 import dgtic.core.service.estatus.EstatusCuentaService;
 import dgtic.core.service.usuario.UsuarioService;
 import dgtic.core.util.RenderPagina;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,7 +42,7 @@ public class UsuarioController {
     }
 
     @PostMapping("alta-usuario")
-    public String registrarUsuario(@ModelAttribute("usuarioEntity") UsuarioEntity usuarioEntity,
+    public String registrarUsuario(@Valid  @ModelAttribute("usuarioEntity") UsuarioEntity usuarioEntity,
                                    BindingResult result, Model model,
                                    RedirectAttributes flash){
         if(result.hasErrors()){
@@ -89,6 +90,8 @@ public class UsuarioController {
     @GetMapping("borrar-usuario/{id}")
     public String borrarCliente(@PathVariable("id") Integer id,Model model,
                                 RedirectAttributes flash){
+        CuentaEntity cuenta=cuentaService.buscarCuentaUsuarioId(id);
+        cuentaService.borrar(cuenta);
         usuarioService.borrar(id);
         flash.addFlashAttribute("success","Usuario se borro bien");
         return "redirect:/usuario/lista-usuarios";

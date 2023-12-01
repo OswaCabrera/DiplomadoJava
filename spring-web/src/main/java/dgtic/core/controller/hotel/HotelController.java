@@ -1,14 +1,14 @@
 package dgtic.core.controller.hotel;
 
-import dgtic.core.converter.MayusculasConverter;
-import dgtic.core.model.entity.ClienteEntity;
 import dgtic.core.model.entity.HotelEntity;
-import dgtic.core.service.cliente.HotelService;
+import dgtic.core.service.hotel.HotelService;
+import dgtic.core.util.Archivos;
 import dgtic.core.util.RenderPagina;
-import dgtic.core.validation.HotelValidacion;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,72 +16,94 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("hotel")
+@RequestMapping(value = "hotel")
+@SessionAttributes("hotel")
 public class HotelController {
     @Autowired
-    private HotelValidacion hotelValidacion;
+    HotelService hotelService;
 
-    @Autowired
-    private HotelService hotelService;
-    @GetMapping("/alta-hotel")
-    public String paginaAltaHotel(Model model){
-        HotelEntity hotelEntity = new HotelEntity();
-        model.addAttribute("operacion", "altaHotel");
-        model.addAttribute("hotelEntity",hotelEntity );
+    @Value("${ejemplo.imagen.ruta}")
+    private String archivoRuta;
+
+
+    @GetMapping("alta-hotel")
+    public String altaHotel(Model model){
+        HotelEntity hotelEntity=new HotelEntity();
+        model.addAttribute("operacion", "Alta Hotel");
+        model.addAttribute("hotel", hotelEntity);
         return "hotel/alta-hotel";
     }
-
-    @PostMapping("entrada-uno")
-    public String almacenarHotel(@Valid HotelEntity hotelEntity, BindingResult result, Model model, RedirectAttributes flash ){
-        if (result.hasErrors()){
-            model.addAttribute("operacion", "Error en los datos");
+    @PostMapping("entrada-hotel")
+    public String salvarObjectThymeleaf(@Valid @ModelAttribute("hotel") HotelEntity hotel, BindingResult result,
+                                        Model model, RedirectAttributes flash,
+                                        SessionStatus status, HttpSession sesion) {
+        if (result.hasErrors()) {
+            model.addAttribute("operacion", "Error en datos");
             return "hotel/alta-hotel";
         }
-        try {
-            hotelService.guardar(hotelEntity);
-            flash.addFlashAttribute("success", "Hotel guardado con éxito");
+        try{
+
+            if(hotel.getImagen()!=null || !hotel.getImagen().isEmpty()){
+                String archivo=hotel.getImagen();
+                String nuevoArchivo=hotel.getCorreo()+"_"+archivo;
+                Archivos.renombrar(archivoRuta,archivo,nuevoArchivo);
+                hotel.setImagen(nuevoArchivo);
+            }
+            hotelService.guardar(hotel);
+            status.setComplete();
+            flash.addFlashAttribute("success","Hotel se almaceno con éxito");
             return "redirect:/hotel/lista-hotel";
-        }catch (Exception e){
-            ObjectError er = new ObjectError("Error en los datos","Hubo un error en los datos");
-            model.addAttribute("warning","Hubo un error en los datos");
+        }catch(DataIntegrityViolationException exception){
+            ObjectError er = new ObjectError("duplicados", "Ya esta registrado la tarjeta o correo o teléfono");
             result.addError(er);
-            return "hotel/alta-hotel";
+            model.addAttribute("success", "Ya esta registrado la tarjeta o correo o teléfono");
         }
+        System.out.println(hotel);
+        model.addAttribute("hotel", hotel);
+        return "hotel/alta-hotel";
     }
-
-    @GetMapping("/lista-hotel")
-    public String paginaListaHotel(@RequestParam(name="page", defaultValue = "0") int page, Model model){
-        Pageable pagReq = PageRequest.of(page, 6);
-        Page<HotelEntity> hoteles = hotelService.findAll(pagReq);
-        RenderPagina<HotelEntity> pageRender = new RenderPagina<>("lista-hotel", hoteles);
-        model.addAttribute("hoteles", hoteles);
-        model.addAttribute("page", pageRender);
-        model.addAttribute("operacion", "lista Hotel");
+    @GetMapping("lista-hotel")
+    public String listaClientes(@RequestParam(name = "page", defaultValue = "0") int page,
+                                Model model) {
+        Pageable pagReq = PageRequest.of(page, 2);
+        Page<HotelEntity> hotel = hotelService.findAll(pagReq);
+        RenderPagina<HotelEntity> render = new RenderPagina<>("lista-hotel", hotel);
+        model.addAttribute("hotel", hotel);
+        model.addAttribute("page", render);
+        model.addAttribute("operacion", "Lista de los Hoteles");
         return "hotel/lista-hotel";
     }
-
-    @InitBinder("hotelEntity")
-    public void evaluar(WebDataBinder binder){
-        binder.registerCustomEditor(String.class, "nombre", new MayusculasConverter());
-    }
-
-    @GetMapping("borrar-hotel/{id}")
-    public String borrarHotel(@PathVariable("id") Integer id,Model model,
-                                RedirectAttributes flash){
-        hotelService.borrar(id);
-        flash.addFlashAttribute("success","Hotel se borro bien");
-        return "redirect:/hotel/lista-hotel";
-    }
-
     @GetMapping("modificar-hotel/{id}")
-    public String modificarCliente(@PathVariable("id") Integer id,Model model){
-        HotelEntity hotel= hotelService.buscarHotelId(id);
-        model.addAttribute("hotelEntity",hotel);
+    public String saltoModificar(@PathVariable("id") Integer id, Model model) {
+        HotelEntity hotel = hotelService.buscarHotelId(id);
+        model.addAttribute("hotel", hotel);
         return "hotel/alta-hotel";
     }
+    @GetMapping("borrar-hotel/{id}")
+    public String borrarCliente(@PathVariable("id") Integer id,Model model,
+                                RedirectAttributes flash){
+        hotelService.borrar(id);
+        flash.addFlashAttribute("success","Hotel se borro con éxito");
+        return "redirect:/hotel/lista-hotel";
+    }
+    @PostMapping(value = "salvar")
+    public String guardar(@RequestParam("imagenarchivo") MultipartFile multipartFile,
+                          HttpSession session){
+        if(!multipartFile.isEmpty()){
+            String imagenNombre= Archivos.almacenar(multipartFile,archivoRuta);
+            if(imagenNombre!=null){
+                HotelEntity hotel=(HotelEntity) session.getAttribute("hotel");
+                hotel.setImagen(imagenNombre);
+            }
+        }
+
+        return "hotel/alta-hotel";
+    }
+
 }
