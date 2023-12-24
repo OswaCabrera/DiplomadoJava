@@ -1,0 +1,16 @@
+{
+  "usuario": {
+    "nombre": "Oswaldo",
+    "apellidoPaterno": "Cabrera",
+    "apellidoMaterno": "Perez",
+    "email": "oswaldo121oswaldo@gmail.com",
+    "password": "password",
+    "numeroTelefonico": "5586808072",
+    "rol": 1
+  },
+  "cuenta": {
+    "saldo": 100,
+    "fechaApertura": "2020-01-01",
+    "estatusCuenta": 1
+  }
+}

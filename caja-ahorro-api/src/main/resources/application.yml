@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/pixupdb
-    username: pixup_owner
-    password: pixup_password
+    url: jdbc:mariadb://localhost:3306/caja_ahorro_bd
+    username: root
+    password: root
 
 jpa:
   show-sql: true

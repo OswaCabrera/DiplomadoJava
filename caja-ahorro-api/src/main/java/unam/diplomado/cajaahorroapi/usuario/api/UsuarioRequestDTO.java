@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class CuentaResquestDTO {
+public class UsuarioRequestDTO {
     @NotBlank(message="Nombre es requerido")
     private String nombre;
     private String apellidoPaterno;
@@ -15,6 +15,6 @@ public class CuentaResquestDTO {
     private String email;
     @NotBlank(message="Password es requerido")
     private String password;
-    private Integer numeroTelefonico;
+    private String numeroTelefonico;
     private Integer rol;
 }

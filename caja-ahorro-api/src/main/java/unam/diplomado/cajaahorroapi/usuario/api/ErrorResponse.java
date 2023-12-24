@@ -1,4 +1,4 @@
-package unam.diplomado.pixup.usuario.api;
+package unam.diplomado.cajaahorroapi.usuario.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

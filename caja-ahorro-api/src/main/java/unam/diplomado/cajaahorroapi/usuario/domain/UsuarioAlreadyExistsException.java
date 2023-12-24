@@ -1,4 +1,4 @@
-package unam.diplomado.pixup.usuario.domain;
+package unam.diplomado.cajaahorroapi.usuario.domain;
 
 public class UsuarioAlreadyExistsException extends RuntimeException {
 
